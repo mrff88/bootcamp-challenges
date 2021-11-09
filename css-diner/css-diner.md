@@ -1,6 +1,6 @@
 - **Captura de los 32 niveles superados**
 
-![screenshot](../main/css-dinner-32-levels.png)
+![screenshot](../css-dinner-32-levels.png)
 
 - **Respuesta de cada nivel**
   1. plate
