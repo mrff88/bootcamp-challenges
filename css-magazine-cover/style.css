@@ -1,0 +1,189 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins";
+}
+
+p {
+    margin: 0;
+    color: white;
+}
+
+.magazine {
+    height: 46.875rem;
+    width: 33.75rem;
+    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(2, 37, 4, 0.7)), url("foliage.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.tittle {
+    font-family: "Playfair+Display";
+    display: flex;
+    width: inherit;
+    justify-content: center;
+    position: absolute;
+}
+
+.subtittle {
+    color: rgb(231, 231, 0);
+}
+
+.tittle > p {
+    margin-top: 1.25rem;
+    margin-left: 3.75rem;
+    transform: scaleY(1.95);
+    font-size: 9.125rem;
+    letter-spacing: 3.5rem;
+}
+
+#selena {
+    height: 46.875rem;
+    width: 33.75rem;
+    background-image: url(elle-magazine-cover.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+}
+
+.main {
+    width: 33.75rem;
+    height: 34rem;
+    margin-top: 12.875rem;
+    display: flex;
+    position: absolute;
+    justify-content: space-between;
+}
+
+.right {
+    text-align: right;
+    margin-right: 1.2rem;
+}
+
+#group-1>p {
+    font-size: 3.3rem;
+    font-weight: 600;
+    transform: scaleY(1.4);
+    margin-top: 3rem;
+    line-height: 3.5rem;
+}
+
+#group-1>div, #group-2, #group-3 {
+    margin-left: 1.5rem;
+}
+
+#group-1 div p:first-child, #group-2 p.subtittle, #group-4 p:nth-child(2), #group-4 p:last-child {
+    font-family: "Playfair+Display";
+    font-size: 0.85rem;
+    line-height: 0.8rem;
+}
+
+#group-1 .paragraph-1 p:nth-of-type(n+2), #group-2 .paragraph-1, #group-4 p:nth-child(3), #group-4 p:nth-child(4), #group-4 p:nth-child(5), #group-5 p:nth-of-type(n+2) {
+    font-weight: 800;
+    transform: scaleY(1.4);
+}
+
+#group-1 .paragraph-1 p:nth-child(2) {
+    font-size: 1.3rem;
+    line-height: 1.05rem;
+    margin-top: 0.4rem;
+    margin-bottom: 1.05rem;
+}
+
+#group-1 .paragraph-1 p:nth-child(3) {
+    font-size: 1rem;
+    line-height: 0.9rem;
+}
+
+#group-2 .paragraph-1 p:first-child {
+    font-size: 1.5rem;
+    line-height: 1.25rem;
+    margin-top: 1.7rem;
+}
+
+#group-2 .paragraph-1 p:nth-of-type(n+2) {
+    font-size: 0.85rem;
+    line-height: 0.8rem;
+    margin-top: 0.2rem;
+}
+
+#group-4 p:nth-child(3), #group-4 p:nth-child(4) {
+    font-size: 1.3rem;
+    line-height: 1.09rem;
+}
+
+#group-4 p:nth-child(3) {
+    margin: 0.5rem 0 0.2rem 0;
+}
+
+#group-4 p:nth-child(4) {
+    margin: 1.4rem 0;
+}
+
+#group-4 p:nth-child(5) {
+    line-height: 0.9rem;
+    margin-bottom: 0.8rem;
+    font-size: 0.9rem;
+}
+
+#group-4 p.subtittle {
+    font-weight: 800;
+    transform: scaleY(1.6);
+    font-size: 0.8rem;
+    line-height: 0.7rem;
+    margin: 0.3rem 0 0.5rem 0;
+}
+
+#group-5 p.subtittle {
+    font-size: 5.8rem;
+    line-height: 3.5rem;
+    margin-right: -0.48rem;
+}
+#group-5 p:nth-of-type(2), #group-5 p:nth-of-type(4), #group-5 p:nth-of-type(5) {
+    font-size: 0.9rem;
+    line-height: 0.8rem;
+}
+
+#group-5 p:nth-of-type(3) {
+    margin: 1rem 0 0.6rem 0;
+    font-size: 1.3rem;
+    line-height: 1.05rem;
+}
+
+#group-5 p:nth-of-type(4) {
+    margin: 0.9rem 0 0.8rem 0;
+}
+
+#group-5 p:nth-of-type(3) span {
+    font-size: 2rem;
+}
+
+#group-2 {
+    margin-top: 4.5rem;
+}
+
+#group-3 {
+    font-size: 0.45rem;
+    margin-top: 3.2rem;
+    transform: scaleY(1.5);
+    line-height: 0.45rem;
+}
+
+#group-5 {
+    margin-top: 1.8rem;
+}
+
+#trademark {
+    position: absolute;
+    font-size: 1.5rem;
+    color: grey;
+    margin: 11.22rem 0 0 31.56rem;
+}
