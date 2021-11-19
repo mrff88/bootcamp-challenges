@@ -1,0 +1,19 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.reproductor {
+    height: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#control {
+    border: 0.15rem dashed;
+    border-radius: 50%;
+    padding: 3rem;
+    line-height: 1.8rem;
+    font-size: 2rem;
+}
