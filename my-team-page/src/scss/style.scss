@@ -1,0 +1,141 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=PT+Serif:wght@400;700&family=Poppins:wght@400;600&display=swap");
+
+html,
+body {
+  margin: 0;
+}
+
+.team {
+  max-width: 57%;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  row-gap: 4rem;
+
+  @at-root #{&}__details {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  @at-root #{&}__title {
+    font-family: "PT Serif", serif;
+  }
+
+  @at-root #{&}__subtitle {
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+  }
+
+  @at-root #{&}__information {
+    font-family: "Poppins", sans-serif;
+    width: 24rem;
+  }
+
+  @at-root #{&}__crew {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 60rem;
+    justify-content: space-between;
+  }
+
+  @at-root #{&}__footer {
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    color: #a9a9a9;
+    span {
+      text-decoration: underline;
+      font-weight: 600;
+    }
+  }
+}
+
+.member {
+  @at-root #{&}__photo {
+    object-fit: cover;
+  }
+
+  @at-root #{&}__profile {
+    margin: 0;
+    display: flex;
+    column-gap: 0.5rem;
+  }
+
+  @at-root #{&}__role {
+    writing-mode: vertical-lr;
+    font-family: "PT Serif", serif;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+  }
+
+  @at-root #{&}__name {
+    font-family: "Poppins", sans-serif;
+  }
+
+  @at-root #{&}--one #{&}__photo {
+    transform: scaleX(-1);
+    margin: -35.55% 0% 0% -10.7%;
+    width: 17.5rem;
+    height: 25rem;
+  }
+
+  @at-root #{&}--two #{&}__photo {
+    margin: -4.55% 0% 0% -17.7%;
+    width: 18.5rem;
+    height: 25rem;
+  }
+
+  @at-root #{&}--three #{&}__photo {
+    margin: -9.55% 0% 0% -17.7%;
+    width: 17.5rem;
+    height: 26rem;
+  }
+
+  @at-root #{&}--four #{&}__photo {
+    margin: -30% 0% 0% 0%;
+    width: 17.5rem;
+    height: 26rem;
+  }
+
+  @at-root #{&}--five #{&}__photo {
+    margin: 0% 0% 0% -50%;
+    width: 25.5rem;
+    height: 21rem;
+  }
+
+  @at-root #{&}--six #{&}__photo {
+    margin: -16% 0% 0% -19%;
+    width: 20.5rem;
+    height: 25rem;
+  }
+
+  @at-root #{&}:nth-of-type(3n + 2) {
+    align-self: flex-end;
+  }
+}
+
+.clip {
+  overflow: hidden;
+  width: 14rem;
+  height: 20rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .team {
+    max-width: 95%;
+
+    @at-root #{&}__crew {
+        min-height: 87rem;
+    }
+  }
+
+  .member {
+    @at-root #{&}:nth-of-type(3n + 2) {
+      align-self: flex-start;
+    }
+
+    @at-root #{&}:nth-of-type(2n + 0) {
+      align-self: flex-end;
+    }
+  }
+}
