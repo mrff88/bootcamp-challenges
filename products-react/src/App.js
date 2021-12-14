@@ -1,6 +1,7 @@
-import { useState } from "react";
-import "./App.css";
-import productsMock from "./products.json";
+import { useState } from 'react';
+import './App.css';
+import Product from './components/Product';
+import productsMock from './products.json';
 
 const filterAndSort = (products, color) => {
   return {
@@ -20,19 +21,20 @@ const filterAndSort = (products, color) => {
         return productsMock.filter(product => product.color === color);
       }
     },
-  }
-}
+  };
+};
 
 const App = () => {
+  // hook utilizado useState
   const [products, setProducts] = useState(productsMock);
 
   const filterOrSort = (type, color = '') => {
-    const filteredProducts = filterAndSort(products,color)[type]();
+    const filteredProducts = filterAndSort(products, color)[type]();
     setProducts(filteredProducts);
   };
 
   return (
-    <div className="App">
+    <div id="app">
       <div className="filterAndSearch">
         <button
           className="filterAndSearch__option"
@@ -54,7 +56,11 @@ const App = () => {
         </button>
         <div className="filterAndSearch__option">
           <label htmlFor="color">Filtrar Por Color: </label>
-          <select name="color" id="color" onChange={e => filterOrSort('porColor', e.target.value)}>
+          <select
+            name="color"
+            id="color"
+            onChange={e => filterOrSort('porColor', e.target.value)}
+          >
             <option value="all">Todos</option>
             <option value="verde">Verde</option>
             <option value="amarillo">Amarillo</option>
@@ -62,16 +68,11 @@ const App = () => {
           </select>
         </div>
       </div>
+
       <div className="productsContainer">
-        {products.map(({ image, price, name }) => {
-          return (
-            <div className="product" key={name.replace(" ", "")}>
-              <p className="product__image">{image}</p>
-              <p>${price}</p>
-              <p>{name.toUpperCase()}</p>
-            </div>
-          );
-        })}
+        {products.map(product => (
+          <Product product={product} key={product.name.replace(' ', '')} />
+        ))}
       </div>
     </div>
   );
