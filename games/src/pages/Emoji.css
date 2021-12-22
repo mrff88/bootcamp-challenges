@@ -1,0 +1,11 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.app__input {
+  margin: 10px 0;
+}
