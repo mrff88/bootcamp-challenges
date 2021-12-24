@@ -1,0 +1,14 @@
+.products {
+  @at-root &__main {
+    text-align: center;
+    font-weight: 700;
+  }
+
+  @at-root &__container {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 1rem;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+  }
+}
