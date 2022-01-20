@@ -1,13 +1,11 @@
-import { Escrutinio } from "./Escrutinio";
-import { Porcentaje } from "./Porcentaje";
-import { Total } from "./Total";
+import { Escrutinio } from './Escrutinio';
+import { Total } from './Total';
 
 export const Resumen = () => {
   return (
     <>
-      <Total />
-      <Escrutinio />
-      <Porcentaje />
+      <Total  />
+      <Escrutinio  />
     </>
   );
 };

@@ -1,6 +1,6 @@
-import { Grid } from "@mui/material";
-import { Candidatos } from "../components/Candidatos";
-import { Resumen } from "../components/Resumen";
+import { Grid } from '@mui/material';
+import { Candidatos } from '../components/Candidatos';
+import { Resumen } from '../components/Resumen';
 
 export const Elecciones = () => {
   return (
