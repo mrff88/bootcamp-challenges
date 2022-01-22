@@ -1,9 +1,8 @@
-import { Card, CardContent, Grid, Typography } from '@mui/material';
-import { useContext } from 'react';
-import { CandidatosContext } from '../utils/CandidatosContext';
+import { Card, CardContent, Grid, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
 
 export const Total = () => {
-  const { candidatos } = useContext(CandidatosContext);
+  const candidatos = useSelector((state) => state.candidatos.candidatos);
   const total = candidatos.reduce(
     (accumulator, candidato) => accumulator + candidato.votos,
     0
