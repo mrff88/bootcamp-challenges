@@ -2,6 +2,7 @@ import React, { useState, useEffect, useReducer } from "react";
 import Formulario from "../components/formulario";
 import ListaTareas from "../components/listaTareas";
 import tareas from "../utils/tareas";
+import useLocalStorage from "../utils/useLocalStorage";
 
 const ACTIONS = {
   CARGAR_TAREAS: "upload-todos",
@@ -14,15 +15,17 @@ const ACTIONS = {
 function reducer(state, action) {
   switch (action.type) {
     case ACTIONS.CARGAR_TAREAS:
-      return tareas;
+      return cargarTodos(action);
     case ACTIONS.CREAR_TAREA:
-      return [...state, crearTodo(action.payload.tarea)];
+      const newState = [...state, crearTodo(action.payload.tarea)];
+      action.payload.guardarEnLocalStorage(newState);
+      return newState;
     case ACTIONS.EDITAR_TAREA:
-      return editTodo(state, action.payload.nuevaTarea);
+      return editTodo(state, action);
     case ACTIONS.ELIMINAR_TAREA:
-      return deleteTodo(state, action.payload.id);
+      return deleteTodo(state, action);
     case ACTIONS.TOGGLE_TAREA:
-      return toggleTodo(state, action.payload.id);
+      return toggleTodo(state, action);
     default:
       return state;
   }
@@ -36,50 +39,73 @@ function crearTodo(tarea) {
   };
 }
 
-function editTodo(state, nuevaTarea) {
-  return state.map((tarea) => {
-    return tarea.id === nuevaTarea.id
+function editTodo(state, action) {
+  const newState = state.map((tarea) => {
+    return tarea.id === action.payload.nuevaTarea.id
       ? {
-          id: nuevaTarea.id,
-          titulo: nuevaTarea.titulo,
-          completado: nuevaTarea.completado,
+          ...tarea,
+          titulo: action.payload.nuevaTarea.titulo,
         }
       : tarea;
   });
+  action.payload.guardarEnLocalStorage(newState);
+  return newState;
 }
 
-function deleteTodo(state, id) {
-  return state
-    .map((tarea) => (tarea.id === id ? null : tarea))
+function deleteTodo(state, action) {
+  const newState = state
+    .map((tarea) => (tarea.id === action.payload.id ? null : tarea))
     .filter((tarea) => tarea != null);
+  action.payload.guardarEnLocalStorage(newState);
+  return newState;
 }
 
-function toggleTodo(state, id) {
-  return state.map((tarea) => {
-    return tarea.id === id
+function toggleTodo(state, action) {
+  const newState = state.map((tarea) => {
+    return tarea.id === action.payload.id
       ? { ...tarea, completado: !tarea.completado }
       : tarea;
   });
+  action.payload.guardarEnLocalStorage(newState);
+  return newState;
+}
+
+function cargarTodos(action) {
+  return action.payload.tareas;
 }
 
 export default function Principal() {
   // Estados del componente
+  const [tareasDelStorage, actualizarTareasDelStorage] = useLocalStorage(
+    "tareas",
+    tareas
+  );
   const [state, dispatch] = useReducer(reducer, []);
   const [editable, setEditable] = useState(null);
 
   // Ciclo de vida con hook useEffect
   useEffect(() => {
-    dispatch({ type: ACTIONS.CARGAR_TAREAS });
+    dispatch({
+      type: ACTIONS.CARGAR_TAREAS,
+      payload: { tareas: tareasDelStorage },
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // función para agregar una nueva tarea
   const handleRegistrar = (tarea) => {
-    dispatch({ type: ACTIONS.CREAR_TAREA, payload: { tarea } });
+    dispatch({
+      type: ACTIONS.CREAR_TAREA,
+      payload: { tarea, guardarEnLocalStorage: actualizarTareasDelStorage },
+    });
   };
 
   // función para cambiar el estado de una tarea
   const handleToggle = (id) => {
-    dispatch({ type: ACTIONS.TOGGLE_TAREA, payload: { id } });
+    dispatch({
+      type: ACTIONS.TOGGLE_TAREA,
+      payload: { id, guardarEnLocalStorage: actualizarTareasDelStorage },
+    });
   };
 
   // funcion para recibir una tarea que se va a editar
@@ -89,13 +115,22 @@ export default function Principal() {
 
   // funcion para editar una tarea
   const handleEditar = (nuevaTarea) => {
-    dispatch({ type: ACTIONS.EDITAR_TAREA, payload: { nuevaTarea } });
+    dispatch({
+      type: ACTIONS.EDITAR_TAREA,
+      payload: {
+        nuevaTarea,
+        guardarEnLocalStorage: actualizarTareasDelStorage,
+      },
+    });
     setEditable(null);
   };
 
   // Eliminar una tarea
   const handleEliminar = (id) => {
-    dispatch({ type: ACTIONS.ELIMINAR_TAREA, payload: { id } });
+    dispatch({
+      type: ACTIONS.ELIMINAR_TAREA,
+      payload: { id, guardarEnLocalStorage: actualizarTareasDelStorage },
+    });
   };
 
   // Renderizar el componente
