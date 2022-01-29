@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 
-const ShowMessageFunction = () => {
-  const [message, setMessage] = useState();
+const ShowMessageFunction = ({ message }) => {
+  // const [message, setMessage] = useState();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const msg = event.target[0].value;
 
-    setMessage(msg);
+    // setMessage(msg);
   };
 
   // ComponentDidMount
@@ -28,8 +28,8 @@ const ShowMessageFunction = () => {
   return (
     <form onSubmit={handleSubmit}>
       <h1>{message}</h1>
-      <input />
-      <button type="submit">Show Text</button>
+      {/* <input />
+      <button type="submit">Show Text</button> */}
     </form>
   );
 };
