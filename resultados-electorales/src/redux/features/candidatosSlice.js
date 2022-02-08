@@ -1,13 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const candidatosSlice = createSlice({
-  name: 'candidatos',
+  name: "candidatos",
   initialState: {
-    candidatos: [
-      { nombre: 'Hugo', votos: 0 },
-      { nombre: 'Paco', votos: 0 },
-      { nombre: 'Luis', votos: 0 },
-    ],
+    candidatos: [],
   },
   reducers: {
     votar: (state, { payload: candidatoIndex }) => {
