@@ -1,9 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
-
-import { productCtlr } from "./api/controllers/index.js";
-
-const { getAllProducts, getOneProduct, createProduct } = productCtlr;
+import { productRouter, clientRouter } from "./api/routes/index.js";
 
 /**
  * Mongoose
@@ -27,16 +24,26 @@ const app = express();
 // Middleware
 app.use(express.json());
 
-// Routes
-app.get("/", (request, response) => {
-  response.send("API PRODUCTS");
-});
+// const m1 = (req, res, next) => {
+//   console.log("Middleware", req.body);
+//   req.body.product = { id: "122234215" };
+//   // res.send("Middleware");
+//   next();
+// };
 
-app.get("/api/products", getAllProducts);
-app.get("/api/products/:id", getOneProduct);
-app.post("/api/products/create", createProduct);
+// const m2 = (req, res) => {
+//   console.log("Middleware 2", req.body);
+//   res.send("Middleware");
+// };
+
+// app.get("/middleware", m1, m2);
+
+app.use("/api", productRouter);
+app.use("/api", clientRouter);
+
+const PORT = process.env.PORT || 5000;
 
 // Launch server
-app.listen(5000, () => {
+app.listen(PORT, () => {
   console.log("Iniatialized server!!");
 });
