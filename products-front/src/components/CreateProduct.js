@@ -10,7 +10,6 @@ const CreateProduct = ({ show, handleHide }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(e.target.value);
 
     const { elements } = e.target;
 
@@ -21,8 +20,6 @@ const CreateProduct = ({ show, handleHide }) => {
       discount: elements[3].value,
       active: elements[4].checked,
     };
-
-    console.log(product);
     await dispatch(createProductAsync(product));
     dispatch(getAllProductsAsync());
   };

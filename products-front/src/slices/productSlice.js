@@ -1,5 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { createProduct, getAllProducts, deleteProduct, login } from "../api";
+import {
+  createProduct,
+  getAllProducts,
+  updateProduct,
+  deleteProduct,
+} from "../api";
 
 // const initialState = {};
 
@@ -21,6 +26,14 @@ export const createProductAsync = createAsyncThunk(
   }
 );
 
+export const updateProductAsync = createAsyncThunk(
+  "products/update",
+  async (product) => {
+    const response = await updateProduct(product);
+    return response;
+  }
+);
+
 export const deleteProductAsync = createAsyncThunk(
   "products/delete",
   async (id) => {
@@ -30,18 +43,21 @@ export const deleteProductAsync = createAsyncThunk(
   }
 );
 
-export const loginAsync = createAsyncThunk("login", async (user) => {
-  const response = await login(user);
-  return response;
-});
-
 export const productSlice = createSlice({
   name: "products",
   initialState: {
     products: [],
     loading: false,
   },
-  reducers: {},
+  reducers: {
+    productToEdit: (state, action) => {
+      state.productToEdit = action.payload;
+      state.showModalToEdit = true;
+    },
+    hideModalToEdit: (state) => {
+      state.showModalToEdit = false;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getAllProductsAsync.pending, (state) => {
@@ -56,13 +72,14 @@ export const productSlice = createSlice({
       })
       .addCase(deleteProductAsync.fulfilled, (state, action) => {
         state.deleted = action.payload;
-      })
-      .addCase(loginAsync.fulfilled, (state, action) => {
-        state.login = action.payload;
       });
   },
 });
 
+export const { productToEdit, hideModalToEdit } = productSlice.actions;
+
 export const selectProducts = (state) => state.products.products;
+export const selectProductToEdit = (state) => state.products.productToEdit;
+export const selectShowModalToEdit = (state) => state.products.showModalToEdit;
 
 export default productSlice.reducer;
